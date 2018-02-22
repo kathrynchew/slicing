@@ -60,7 +60,7 @@ def custom_append(input_list, value):
         True
 
     """
-    input_list[-1:] = value
+    input_list[-1:] = [input_list[-1], value]
 
     pass
 
@@ -81,7 +81,7 @@ def custom_extend(input_list, second_list):
 
     """
     for item in second_list:
-        input_list[-1:] = item
+        input_list[-1:] = [input_list[-1], item]
     pass
 
 
@@ -140,8 +140,9 @@ def custom_pop(input_list):
         ['Jan', 'Feb']
 
     """
-
-    return None
+    pop_item = input_list[-1]
+    input_list[-1:] = []
+    return pop_item
 
 
 def custom_index(input_list, value):
@@ -156,7 +157,9 @@ def custom_index(input_list, value):
         1
 
     """
-
+    for index_num in range(len(input_list)):
+        if input_list[index_num] == value:
+            return index_num
     return 0
 
 
@@ -172,8 +175,11 @@ def custom_count(input_list, value):
         2
 
     """
-
-    return 0
+    count = 0
+    for item in input_list:
+        if item == value:
+            count += 1
+    return count
 
 
 def custom_reverse(input_list):
@@ -191,7 +197,12 @@ def custom_reverse(input_list):
         True
 
     """
-
+    reversed_list = []
+    count = 0
+    for value in input_list[-1::-1]:
+        reversed_list[count:] = [value]
+        count += 1
+    input_list[:] = reversed_list[:]
     pass
 
 
@@ -211,8 +222,10 @@ def custom_contains(input_list, value):
         True
 
     """
-
-    return None
+    if value in input_list:
+        return True
+    else:
+        return False
 
 
 def custom_equality(some_list, another_list):
@@ -230,8 +243,10 @@ def custom_equality(some_list, another_list):
         False
 
     """
-
-    return None
+    if some_list == another_list:
+        return True
+    else:
+        return False
 
 
 ##############################################################################
